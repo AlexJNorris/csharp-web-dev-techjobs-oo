@@ -13,18 +13,22 @@ namespace TechJobsTests
         Job empty;
         string testString1;
         string testString2;
+        string testString3;
 
        [TestInitialize]
         public void CreateCarObject()
         {
             job1 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
             job2 = new Job("Web Developer", new Employer("LaunchCode"), new Location("St. Louis"), new PositionType("Front-end developer"), new CoreCompetency("JavaScript"));
-            job3 = new Job("Ice cream tester", new Employer(""), new Location("Home"), new PositionType("UX"), new CoreCompetency("Tasting ability"));
+            job3 = new Job("Web Developer", new Employer(""), new Location(""), new PositionType("Front-end developer"), new CoreCompetency("JavaScript"));
             job4 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
             empty = new Job("",new Employer(""),new Location(""), new PositionType(""), new CoreCompetency(""));
-            testString1 = '\n' + "Id: 20\n" + "Name: \n" + "Employer: \n" + "Location: \n" + "Position Type: \n" + "Core Competency: \n";
+            testString1 = '\n' + "OOPS! This job does not seem to exist." + '\n';
             testString2 = '\n' + "Id: 22\n" + "Name: Web Developer\n" + "Employer: LaunchCode\n" + "Location: St. Louis\n" + "Position Type: Front-end developer\n" + "Core Competency: JavaScript\n";
+            testString3 = '\n' + "Id: 28\n" + "Name: Web Developer\n" + "Employer: Data not available\n" + "Location: Data not available\n" + "Position Type: Front-end developer\n" + "Core Competency: JavaScript\n";
+
         }
+
 
         [TestMethod]
         public void TestSettingJobId()
@@ -54,6 +58,11 @@ namespace TechJobsTests
         public void TestForCorrectFormat()
         {
             Assert.AreEqual(testString2, job2.ToString());
+        }
+        [TestMethod]
+        public void TestForMissingDataNotifier()
+        {
+            Assert.AreEqual(testString3, job3.ToString());
         }
     }
 }
